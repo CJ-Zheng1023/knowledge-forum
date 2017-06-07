@@ -1,0 +1,62 @@
+{{#section 'head'}}
+    <link rel="stylesheet" href="/styles/index.css"/>
+{{/section}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <ol class="breadcrumb">
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+                <li class="active">{{getCategoryName curCategory}}</li>
+            </ol>
+            {{#unless user}}
+            {{> mod-login-tip}}
+            {{/unless}}
+            <div class="panel panel-default">
+                {{#if topicList}}
+                <ul class="list-group topic-list">
+                    {{#each topicList}}
+                    <li class="list-group-item clearfix">
+                        <a href="/user/{{userName}}" class="pull-left img-wrapper">
+                            <img src="/images/photo.gif" width="30" height="30">
+                        </a>
+                        {{#if category}}
+                        <div class="pull-left category-wrapper">
+                            <a href="/category/{{category}}" class="btn btn-default btn-xs">{{getCategoryName category}}</a>
+                        </div>
+                        {{/if}}
+                        <div class="pull-left">
+                            <a href="/topic/show/{{id}}">
+                                {{title}}
+                            </a>
+                        </div>
+                        <div class="pull-right">
+                            <span class="label label-info">{{pageView}}浏览 {{replyNum}}回复</span>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{else}}
+                <div class="panel-body">
+                    <div class="alert alert-warning" role="alert">暂无数据</div>
+                </div>
+                {{/if}}
+            </div>
+            {{> mod-pagination}}
+        </div>
+        <div class="col-md-3">
+            {{> mod-personal-info}}
+            {{> mod-introduction}}
+            {{> mod-add-topic}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">统计信息</h3>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">社区会员: {{statistic.userCount}} 人</li>
+                    <li class="list-group-item">帖子数: {{statistic.topicCount}} 个</li>
+                    <li class="list-group-item">回帖数: {{statistic.commentCount}} 条</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

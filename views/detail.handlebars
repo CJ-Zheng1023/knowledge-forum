@@ -1,0 +1,128 @@
+{{#section 'head'}}
+    <link rel="stylesheet" href="/components/summernote/dist/summernote.css" />
+    <link rel="stylesheet" href="/styles/detail.css"/>
+{{/section}}
+{{#section 'js'}}
+    <script src="/components/summernote/dist/summernote.min.js"></script>
+    <script src="/components/summernote/dist/lang/summernote-zh-CN.min.js"></script>
+    <script src="/scripts/detail.js"></script>
+{{/section}}
+<div class="container container-detail">
+    <div class="row">
+        <div class="col-md-9">
+            <ol class="breadcrumb">
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+                <li class="active"><a href="/category/{{topic.category}}">{{getCategoryName topic.category}}</a></li>
+                <li class="active">主题</li>
+            </ol>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                    <h3 class="panel-title topic-title">{{topic.title}}</h3>
+                    <small class="panel-small topic-small">发布于{{topic.createTime}}  {{topic.pageView}}浏览   {{topic.replyNum}}回复</small>
+
+                </div>
+                <div class="panel-body">
+                    <p>
+                        {{{topic.content}}}
+                    </p>
+                </div>
+                <div class="panel-footer text-right">
+                    {{#ifShowEditBtn user.id topic.userId}}
+                    <a href="/topic/edit/{{topic.id}}" class="btn btn-default btn-sm" data-toggle="tooltip" data-original-title="编辑">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                    {{/ifShowEditBtn}}
+                    <a href="#contentBox" class="btn btn-default btn-sm" data-toggle="tooltip" data-original-title="回复">
+                        <span class="glyphicon glyphicon-comment"></span>
+                    </a>
+                </div>
+            </div>
+            {{#if commentList}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span><span>回复</span></h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="media-list">
+                        {{#commentList}}
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="javascript:;">
+                                    <img src="/images/photo.gif" width="30" height="30">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h5  class="media-heading">
+                                    <a href="/user/{{userName}}">{{userName}}</a>
+                                    <span>{{createTime}}</span>
+                                    <div class="pull-right">
+                                        <span>{{addOne @index}} 楼</span>
+                                        <a href="#contentBox" data-toggle="tooltip" data-original-title="回复">
+                                            <span href="#content" data-reply-user="{{userName}}" class="glyphicon glyphicon-share-alt"></span>
+                                        </a>
+                                    </div>
+                                </h5>
+                                <div class="content">
+                                    <p>
+                                        {{{setUserName content}}}
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <hr>
+                        {{/commentList}}
+                        <hr>
+                    </ul>
+                </div>
+            </div>
+            {{/if}}
+            {{#if user}}
+            <div class="panel panel-default" id="contentBox">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span><span>添加新回复</span></h3>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="/topic/addComment">
+                        <div class="form-group">
+                            <textarea id="content" name="content"></textarea>
+                        </div>
+                        <input type="hidden" value="{{topic.id}}" name="topicId" />
+                        <button type="submit" class="btn btn-primary pull-right">提交</button>
+                    </form>
+                </div>
+            </div>
+            {{else}}
+            {{> mod-login-tip}}
+            {{/if}}
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">发布者</h3>
+                </div>
+                <div class="panel-body">
+                    <a class="avatar" href="/user/{{topic.userName}}">
+                        <img src="/images/photo.gif" width="50" height="50">
+                        <strong>{{topic.userName}}</strong>
+                    </a>
+                    <p class="sign text-center"><a href="javascript:;">{{topic.signature}}</a></p>
+                </div>
+            </div>
+            {{> mod-add-topic}}
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">作者其他话题</h3>
+                </div>
+                {{#otherTopicList}}
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="/topic/show/{{id}}">{{title}}</a>
+                    </li>
+                </ul>
+                {{/otherTopicList}}
+            </div>
+        </div>
+    </div>
+</div>

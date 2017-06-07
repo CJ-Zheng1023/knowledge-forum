@@ -1,0 +1,89 @@
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <ol class="breadcrumb">
+                    <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li class="active">个人中心</li>
+                </ol>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">最近发布的话题</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{#if ownTopicList}}
+                        <ul class="list-group topic-list">
+                            {{#each ownTopicList}}
+                                <li class="list-group-item clearfix">
+                                    <div class="pull-left">
+                                        <a href="/topic/show/{{id}}">
+                                            {{title}}
+                                        </a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <span class="label label-info">{{pageView}}浏览 {{replyNum}}回复</span>
+                                    </div>
+                                </li>
+                            {{/each}}
+                        </ul>
+                        {{else}}
+                        <div class="alert alert-warning" role="alert">没有任何话题</div>
+                        {{/if}}
+                    </div>
+                    <div class="panel-footer text-right">
+                        <a class="btn btn-primary" href="/user/{{personal.userName}}/topics">查看更多</a>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">最近参与过的话题</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{#if commentTopicList}}
+                        <ul class="list-group topic-list">
+                            {{#each commentTopicList}}
+                                <li class="list-group-item clearfix">
+                                    <div class="pull-left">
+                                        <a href="/topic/show/{{id}}">
+                                            {{title}}
+                                        </a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <span class="label label-info">{{pageView}}浏览 {{replyNum}}回复</span>
+                                    </div>
+                                </li>
+                            {{/each}}
+                        </ul>
+                        {{else}}
+                        <div class="alert alert-warning" role="alert">没有任何话题</div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">个人信息</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a class="avatar" href="/user/{{personal.userName}}">
+                            <img src="/images/photo.gif" width="50" height="50">
+                            <strong>{{personal.userName}}</strong>
+                        </a>
+                        <p class="sign text-center">
+                            <a href="javascript:;">
+                                {{#if personal.signature}}
+                                    {{personal.signature}}
+                                {{else}}
+                                    这家伙很懒，什么都没有留下
+                                {{/if}}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                {{> mod-add-topic}}
+                {{> mod-introduction}}
+            </div>
+        </div>
+    </div>
+</div>

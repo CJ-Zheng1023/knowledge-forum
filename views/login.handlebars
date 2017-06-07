@@ -1,0 +1,43 @@
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">用户登录</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{#if msg}}
+                            <div class="alert alert-danger">{{msg}}</div>
+                        {{/if}}
+                        <form class="row login-form" action="" method="post">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="userName">用户名</label>
+                                    <input type="text" class="form-control" id="userName" name="username" placeholder="请输入用户名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passWord">密码</label>
+                                    <input type="password" class="form-control" id="passWord" name="password" placeholder="请输入密码">
+                                </div>
+                                <button type="submit" class="btn btn-primary">登录</button>
+                            </div>
+                            <div class="col-md-7">
+                                <hr>
+                                <div class="help-block text-center">
+                                    <p>还没注册吗？点这里<a href="/register">注册账号</a></p>
+                                    <p>忘记密码吗？点这里<a href="#">找回密码</a></p>
+                                </div>
+                                <hr>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                {{> mod-introduction}}
+            </div>
+        </div>
+
+    </div>
+</div>

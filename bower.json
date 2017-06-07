@@ -1,0 +1,26 @@
+{
+  "name": "knowledge-forum",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "AfterWin"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "homepage": "https://github.com/CJ-Zheng1023/knowledge-forum",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

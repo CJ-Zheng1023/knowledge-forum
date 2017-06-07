@@ -1,0 +1,62 @@
+{{#section 'head'}}
+    <link rel="stylesheet" href="/components/summernote/dist/summernote.css" />
+    <link rel="stylesheet" href="/styles/add-topic.css"/>
+{{/section}}
+{{#section 'js'}}
+    <script src="/components/summernote/dist/summernote.min.js"></script>
+    <script src="/components/summernote/dist/lang/summernote-zh-CN.min.js"></script>
+    <script src="/scripts/add-topic.js"></script>
+{{/section}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{#if topic.id}}
+                    <h3 class="panel-title">编辑话题</h3>
+                    {{else}}
+                    <h3 class="panel-title">发布新话题</h3>
+                    {{/if}}
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="post">
+                        <div class="form-group">
+                            <label for="topicCategory" class="col-sm-1 control-label">分类</label>
+                            <div class="col-sm-11">
+                                <select id="topicCategory" name="category" class="form-control">
+                                    {{#if topic.category}}
+                                        {{#each op}}
+                                            <option value="{{@key}}" {{setSelectedOption @key ../topic.category}}>{{this}}</option>
+                                        {{/each}}
+                                    {{else}}
+                                        {{#each op}}
+                                            <option value="{{@key}}">{{this}}</option>
+                                        {{/each}}
+                                    {{/if}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="topicTitle" class="col-sm-1 control-label">标题</label>
+                            <div class="col-sm-11">
+                                <input class="form-control" name="title" id="topicTitle" value="{{topic.title}}" />
+                            </div>
+                        </div>
+                        <div class="form-group textarea-wrapper">
+                            <textarea id="content" name="content">{{topic.content}}</textarea>
+                        </div>
+                        <div class="clearfix btn-wrapper">
+                            <div class="pull-right">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                                <button class="btn btn-default" type="reset">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            {{> mod-introduction}}
+        </div>
+    </div>
+</div>

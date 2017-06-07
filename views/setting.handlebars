@@ -1,0 +1,63 @@
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <ol class="breadcrumb">
+                    <li><a href="index.html"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="/user/{{user.userName}}">个人中心</a></li>
+                    <li class="active">信息设置</li>
+                </ol>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">信息设置</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form" method="post">
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-5">
+                                  <!--  <input type="text" class="form-control"  placeholder="请输入用户名">-->
+                                    {{u.username}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-5">
+                                    <input type="password" class="form-control" name="password"  placeholder="请输入密码" value="{{u.password}}">
+                                    <div class="help-block">不修改请不要填写密码</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">邮箱</label>
+                                <div class="col-sm-5">
+                                  <!--  <input type="email" class="form-control"   placeholder="请输入邮箱">-->
+                                    {{u.mail}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">个性签名</label>
+
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="signature"   placeholder="请输入个性签名" value="{{u.signature}}">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-10 col-md-offset-2">
+                                    <button type="submit" class="btn btn-primary">保存</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                {{> mod-personal-info}}
+                {{> mod-add-topic}}
+                {{> mod-introduction}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+{
+  "name": "knowledge-forum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CJ-Zheng1023/knowledge-forum.git"
+  },
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "author": "AfterWin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CJ-Zheng1023/knowledge-forum/issues"
+  },
+  "homepage": "https://github.com/CJ-Zheng1023/knowledge-forum#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "connect": "^3.6.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "express3-handlebars": "^0.5.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "promise-mysql": "^3.0.1"
+  }
+}

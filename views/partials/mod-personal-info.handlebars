@@ -1,0 +1,23 @@
+{{#if user}}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">个人信息</h3>
+    </div>
+    <div class="panel-body">
+        <a class="avatar" href="/user/{{user.userName}}">
+            <img src="/images/photo.gif" width="50" height="50">
+            <strong>{{user.userName}}</strong>
+        </a>
+        <p class="sign text-center">
+            <a href="javascript:;">
+                {{#if user.signature}}
+                    {{user.signature}}
+                {{else}}
+                    这家伙很懒，什么都没有留下
+                {{/if}}
+
+            </a>
+        </p>
+    </div>
+</div>
+{{/if}}
