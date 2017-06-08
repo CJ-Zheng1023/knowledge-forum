@@ -73,7 +73,7 @@ module.exports = {
     },
     addComment: function(req, res, next){
         Promise.using(getSqlConnection(), function(conn){
-            return conn.query(sql.INSERT_COMMENT, [UUIDUtils.generateUUID(),req.body.content,req.body.topicId,req.session.user.id,new Date()]).then(function(){
+            return conn.query(sql.INSERT_COMMENT, [uuid.generateUUID(),req.body.content,req.body.topicId,req.user.id,new Date()]).then(function(){
                 res.redirect('/topic/show/'+req.body.topicId);
             }).catch(function(errors){
                 console.log(errors);
@@ -81,7 +81,7 @@ module.exports = {
         })
     },
     openCreateTopicPage: function(req, res, next){
-        if(req.session.user){
+        if(req.isAuthenticated()){
             var data={};
             var op={};
             for(p in config.category){
@@ -96,52 +96,55 @@ module.exports = {
 
     },
     addTopic: function(req, res, next){
-        var id=UUIDUtils.generateUUID();
-        dbUtils.execute(sql.INSERT_TOPIC,[id,req.body.title,new Date(),req.body.content,req.session.user.id,req.body.category],function(err, results){
-            if(err){
-                return next(err);
-            }
-            res.redirect('/topic/show/'+id);
+        var id=uuid.generateUUID();
+        Promise.using(getSqlConnection(), function(conn){
+            return conn.query(sql.INSERT_TOPIC,[id, req.body.title, new Date(), req.body.content, req.user.id, req.body.category]).then(function(){
+                res.redirect('/topic/show/'+id);
+            }).catch(function(errors){
+                console.log(errors);
+            })
         })
     },
     openEditTopicPage: function(req, res, next){
-        if(req.session.user){
-            dbUtils.execute(sql.SELECT_TOPIC_FOR_EDIT,[req.params.id,req.session.user.id], function(err, results){
-                if(err){
-                    return next(err);
-                }
-                if(JSON.parse(results).length){
-                    var temp = JSON.parse(results)[0];
-                    var topic = {
-                        id: temp.id,
-                        title: temp.title,
-                        content: temp.content,
-                        category: temp.category
+        if(req.isAuthenticated()){
+            Promise.using(getSqlConnection(), function(conn){
+                return conn.query(sql.SELECT_TOPIC_FOR_EDIT,[req.params.id, req.user.id]).then(function(rows){
+                    if(rows.length){
+                        var temp = rows[0];
+                        var topic = {
+                            id: temp.id,
+                            title: temp.title,
+                            content: temp.content,
+                            category: temp.category
+                        }
+                        var data={};
+                        var op={};
+                        for(p in config.category){
+                            op[p]=config.category[p];
+                        }
+                        delete op.all;
+                        data.op=op;
+                        data.topic=topic;
+                        res.render('add-topic', data);
+                    }else{
+                        res.status(404);
+                        res.render('404');
                     }
-                    var data={};
-                    var op={};
-                    for(p in config.category){
-                        op[p]=config.category[p];
-                    }
-                    delete op.all;
-                    data.op=op;
-                    data.topic=topic;
-                    res.render('add-topic', data);
-                }else{
-                    res.status(404);
-                    res.render('404');
-                }
+                }).catch(function(errors){
+                    console.log(errors);
+                })
             })
         }else{
             res.redirect('/login');
         }
     },
     editTopic: function(req, res, next){
-        dbUtils.execute(sql.UPDATE_TOPIC,[req.body.title,req.body.content,req.body.category,req.params.id,req.session.user.id],function(err,results){
-            if(err){
-                return next(err);
-            }
-            res.redirect('/topic/show/'+req.params.id);
+        Promise.using(getSqlConnection(), function(conn){
+            return conn.query(sql.UPDATE_TOPIC, [req.body.title, req.body.content, req.body.category, req.params.id, req.user.id]).then(function(){
+                res.redirect('/topic/show/'+req.params.id);
+            }).catch(function(errors){
+                console.log(errors);
+            })
         })
     }
 }

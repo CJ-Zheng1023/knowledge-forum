@@ -1,5 +1,4 @@
 /**
- * Created by Administrator on 2016/7/31.
  * 用于生成32位随机数作为ID
  */
 var config = require('../config.js');

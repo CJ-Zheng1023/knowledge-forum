@@ -139,7 +139,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 //全局变量里存储user信息中间件
 app.use(function(req, res, next){
-    res.locals.user = req.session.user;
+    res.locals.user = req.user;
     res.locals.category = config.category;
     next();
 });

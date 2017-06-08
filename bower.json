@@ -21,6 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "summernote": "^0.8.4"
   }
 }
