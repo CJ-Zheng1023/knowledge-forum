@@ -14,6 +14,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var topic = require('./routes/topic');
+var apiRouterV1 = require('./api-router-v1');
 
 //配置静态资源
 app.use(express.static(__dirname+'/public'));
@@ -148,6 +149,7 @@ require('./auth/auth')(app, passport);
 app.use('/', index);
 app.use('/user', user);
 app.use('/topic', topic);
+app.use('/api/v1', apiRouterV1);
 
 //定制404页面
 app.use(function(req, res){

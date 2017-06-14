@@ -1,10 +1,6 @@
+var saveto = Common.getImgSaveTo();
+var qiniu_upload_domain = Common.getQiniuUploadDomain();
+var qiniu_bucket_domain = Common.getQiniuBucketDomain();
 $(function(){
-    $('#content').summernote({
-        height: 300,
-        lang: 'zh-CN',
-        placeholder: '请输入内容...'
-    });
-    $('#content').on('summernote.blur', function() {
-        $('#content').html($('#content').summernote('code'));
-    });
+    CKEDITOR.replace('content',{"extraPlugins":"filebrowser,image,imagepaste,filetools"});
 })
