@@ -1,9 +1,9 @@
 var dbConfig = {
-    mysql_database: 'kfdb-test',
-    mysql_host: '47.93.1.25',
-    mysql_port: '3306',
-    mysql_user: 'root',
-    mysql_password: '1qaz2wsx',
+    mysql_database: '',
+    mysql_host: '',
+    mysql_port: '',
+    mysql_user: '',
+    mysql_password: '',
     mysql_connectionLimit: 20
 }
 var category = {
