@@ -7,3 +7,13 @@
 .panel .panel-body .sign{
     margin-top: 20px;
 }
+.has-error .cke{
+    border-color: #f13e64 !important;
+}
+.has-error .form-control{
+    border-color: #f13e64;
+}
+.has-error .control-label,
+.has-error .help-block{
+    color: #F3565D;
+}

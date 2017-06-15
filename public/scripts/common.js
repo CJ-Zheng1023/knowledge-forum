@@ -18,7 +18,19 @@ var Common = (function($){
         },
         getImgSaveTo: function(){
             return img_save_to;
+        },
+        initAlertCloseBtn: function(){
+            $(".close").on("click", function(){
+                $(this).parent().css("display", "none");
+            })
         }
     }
 
 })(jQuery);
+
+
+$(function(){
+    Common.initAlertCloseBtn();
+
+
+})

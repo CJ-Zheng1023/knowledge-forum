@@ -5,6 +5,7 @@
     <script src="/lib/ckeditor/js/plupload.full.min.js"></script>
     <script src="/lib/ckeditor/js/qiniu.min.js"></script>
     <script src="/lib/ckeditor/ckeditor/ckeditor.js"></script>
+    <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="/scripts/detail.js"></script>
 {{/section}}
 <div class="container container-detail">
@@ -72,7 +73,6 @@
                         </li>
                         <hr>
                         {{/commentList}}
-                        <hr>
                     </ul>
                 </div>
             </div>
@@ -83,9 +83,10 @@
                     <h3 class="panel-title"><span class="glyphicon glyphicon-plus"></span><span>添加新回复</span></h3>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="/topic/addComment">
+                    <form method="post" action="/topic/addComment" id="addCommentForm">
                         <div class="form-group">
-                            <textarea id="content" name="content"></textarea>
+                            <textarea data-error-container="#contentError" id="content" name="content"></textarea>
+                            <div id="contentError"></div>
                         </div>
                         <input type="hidden" value="{{topic.id}}" name="topicId" />
                         <button type="submit" class="btn btn-primary pull-right">提交</button>
