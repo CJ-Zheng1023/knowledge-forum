@@ -10,3 +10,9 @@
 .category-wrapper{
     margin-right: 10px;
 }
+.title-wrapper{
+    transition: transform 0.5s;
+}
+.title-wrapper:hover{
+    transform: translateX(10px);
+}

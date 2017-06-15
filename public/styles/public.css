@@ -17,3 +17,52 @@
 .has-error .help-block{
     color: #F3565D;
 }
+@media (min-width: 992px) {
+    .left-side{
+        animation: fadeInLeft 1s 1;
+    }
+    .right-side{
+        animation: fadeInRight 1s 1;
+    }
+    @keyframes fadeInLeft{
+        0%{
+            transform: translateX(-15px);
+            opacity: 0;
+        }
+        100%{
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes fadeInLeft{
+        0%{
+            transform: translateX(-15px);
+            opacity: 0;
+        }
+        100%{
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes fadeInRight{
+        0%{
+            transform: translateX(15px);
+            opacity: 0;
+        }
+        100%{
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes fadeInRight{
+        0%{
+            transform: translateX(15px);
+            opacity: 0;
+        }
+        100%{
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+}
+

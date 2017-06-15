@@ -3,7 +3,7 @@
 {{/section}}
 <div class="container">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 left-side">
             <ol class="breadcrumb">
                 <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
                 <li class="active">{{getCategoryName curCategory}}</li>
@@ -24,7 +24,7 @@
                             <a href="/category/{{category}}" class="btn btn-default btn-xs">{{getCategoryName category}}</a>
                         </div>
                         {{/if}}
-                        <div class="pull-left">
+                        <div class="pull-left title-wrapper">
                             <a href="/topic/show/{{id}}">
                                 {{title}}
                             </a>
@@ -43,7 +43,7 @@
             </div>
             {{> mod-pagination}}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 right-side">
             {{> mod-personal-info}}
             {{> mod-introduction}}
             {{> mod-add-topic}}
