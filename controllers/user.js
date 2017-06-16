@@ -2,6 +2,8 @@ var getSqlConnection = require('../utils/dataBaseConnection');
 var sql = require('../sqls/user-sql.js');
 var Promise = require('bluebird');
 var NO_RESOURCE = "no resource";
+var bcrypt = require('bcrypt-nodejs');
+var noImageUrl = require('../config').noImageUrl;
 
 module.exports = {
     doLogout: function(req, res){
@@ -25,7 +27,8 @@ module.exports = {
                     var personal = {
                         id: temp.id,
                         userName: temp.user_name,
-                        signature: temp.signature
+                        signature: temp.signature,
+                        photo: (temp.photo==""?noImageUrl:temp.photo)
                     };
                     data.personal=personal;
                     id = personal.id;
@@ -125,6 +128,7 @@ module.exports = {
                     u.signature=temp.signature;
                     u.password=temp.password;
                     u.mail=temp.mail;
+                    u.photo = (temp.photo==""||temp.photo==null?noImageUrl:temp.photo);
                     data.u = u;
                     res.render('setting', data);
                 }else{
@@ -138,15 +142,19 @@ module.exports = {
     },
     saveSetting: function(req, res, next){
         var s="", params=[];
-        if(req.body.password){
-            s=sql.UPDATE_USER_BY_USERNAME_INCLUDE_PASSWORD;
-            params=[req.body.signature,req.body.password,req.params.username];
-        }else{
-            s=sql.UPDATE_USER_BY_USERNAME;
-            params=[req.body.signature,req.params.username];
-        }
         Promise.using(getSqlConnection(), function(conn){
-            return conn.query(s, params).then(function(){
+            return conn.query(sql.QUERY_PASSWORD_BY_USERNAME, [req.params.username]).then(function(rows){
+                var oldPassword = rows[0].password;
+                if(oldPassword == req.body.password){
+                    s = sql.UPDATE_USER_BY_USERNAME_EXCLUDE_PASSWORD;
+                    params=[req.body.signature,req.body.photo,req.params.username];
+                }else{
+                    s = sql.UPDATE_USER_BY_USERNAME;
+                    params=[req.body.signature,bcrypt.hashSync(req.body.password, null, null),req.body.photo,req.params.username];
+                }
+            }).then(function(){
+                return conn.query(s, params);
+            }).then(function(){
                 res.redirect('/user/'+req.params.username);
             })
         })

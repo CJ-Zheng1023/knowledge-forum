@@ -4,6 +4,7 @@ var Common = (function($){
     var qiniu_bucket_domain = "http://or1zifxf6.bkt.clouddn.com";
     var qiniu_upload_domain = "http://up-z1.qiniu.com";
     var img_save_to  = "qiniu";
+    var noImageUrl = $.WEB_ROOT + "/images/no-img.jpg";
 
 
     return{
@@ -23,6 +24,9 @@ var Common = (function($){
             $(".close").on("click", function(){
                 $(this).parent().css("display", "none");
             })
+        },
+        getNoImageUrl: function(){
+            return noImageUrl;
         }
     }
 
