@@ -57,6 +57,7 @@ module.exports = {
                     comment.topicId=el.topic_id;
                     comment.createTime=el.create_time;
                     comment.userName=el.user_name;
+                    comment.userPhoto=(el.photo==""||el.photo==null?noImageUrl:el.photo);
                     commentList.push(comment);
                 })
                 data.commentList = commentList;
