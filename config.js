@@ -1,9 +1,12 @@
 var dbConfig = {
-    mysql_database: '',
-    mysql_host: '',
-    mysql_port: '',
-    mysql_user: '',
-    mysql_password: '',
+    //mysql_database: '',
+    mysql_database: 'kfdb',
+    //mysql_host: '',
+    mysql_host: 'localhost',
+    //mysql_user: 'root',
+    mysql_user: 'root',
+    //mysql_password: '',
+    mysql_password: 'root',
     mysql_connectionLimit: 20
 }
 var category = {
@@ -18,7 +21,16 @@ var category = {
     'db': '数据库',
     'other': '其他'
 }
+var redisConfig = {
+    //host: '',
+    host: 'localhost',
+    port: '6379',
+    ttl: 60 * 60 * 24,
+    db: 2
+}
 
 exports.dbConfig = dbConfig;
 exports.category = category;
 exports.baseWords = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+exports.noImageUrl = '/images/no-img.jpg';
+exports.redisConfig = redisConfig;
