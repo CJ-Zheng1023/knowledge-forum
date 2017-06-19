@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var getSqlConnection = require('../utils/dataBaseConnection');
 var Promise = require('bluebird');
 var uuid = require('../utils/UUIDUtil');
+var noImageUrl = require('../config').noImageUrl;
 // expose this function to our app using module.exports
 module.exports = function(passport) {
 
@@ -18,7 +19,8 @@ module.exports = function(passport) {
             return conn.query('SELECT * FROM user WHERE id = ? ', [id]).then(function(rows){
                 var user = {
                     id: rows[0].Id,
-                    userName: rows[0].user_name
+                    userName: rows[0].user_name,
+                    photo: (rows[0].photo==""||rows[0].photo==null?noImageUrl:rows[0].photo)
                 }
                 return done(null, user);
             })
@@ -44,7 +46,8 @@ module.exports = function(passport) {
                     }
                     var user = {
                         id: rows[0].Id,
-                        userName: rows[0].user_name
+                        userName: rows[0].user_name,
+                        photo: (rows[0].photo==""||rows[0].photo==null?noImageUrl:rows[0].photo)
                     }
                     return done(null, user);
                 })

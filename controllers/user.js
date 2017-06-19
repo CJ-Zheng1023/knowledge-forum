@@ -28,7 +28,7 @@ module.exports = {
                         id: temp.id,
                         userName: temp.user_name,
                         signature: temp.signature,
-                        photo: (temp.photo==""?noImageUrl:temp.photo)
+                        photo: (temp.photo==""||temp.photo==null?noImageUrl:temp.photo)
                     };
                     data.personal=personal;
                     id = personal.id;
@@ -117,6 +117,11 @@ module.exports = {
     },
     openSettingPage: function(req, res, next){
         var username=req.params.username;
+        if(username != req.user.userName){
+            res.status(404)
+            res.render('404');
+            return;
+        }
         var data = {};
         Promise.using(getSqlConnection(), function(conn){
             return conn.query(sql.QUERY_USER_BY_USERNAME, [username]).then(function(rows){

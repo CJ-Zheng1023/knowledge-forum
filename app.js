@@ -3,7 +3,8 @@ var app = express();
 app.use(require('body-parser')());
 //引入session中间件
 var session = require('express-session');
-var cookieParser = require('cookie-parser');
+var RedisStore = require('connect-redis')(session);
+//var cookieParser = require('cookie-parser');
 app.set('port', process.env.PORT || 3000);
 var config = require('./config');
 var passport = require('passport');
@@ -122,17 +123,21 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 require('./auth/passport')(passport); // pass passport for configuration
 
-app.use(cookieParser()); // read cookies (needed for auth)
+//app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
 app.use(session({
-    secret: '123',
-    cookie: {maxAge: 3600000},
-    rolling: true,
+    store: new RedisStore({
+        host: config.redisConfig.host,
+        port: config.redisConfig.port,
+        ttl: config.redisConfig.ttl,
+        db: config.redisConfig.db
+    }),
+    secret: "my secret",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions

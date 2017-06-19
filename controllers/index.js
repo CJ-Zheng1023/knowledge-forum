@@ -1,6 +1,7 @@
 var getSqlConnection = require('../utils/dataBaseConnection');
 var Promise = require('bluebird');
 var sql = require('../sqls/index-sql');
+var noImageUrl = require('../config').noImageUrl;
 
 module.exports = {
     openLoginPage: function(req, res, next){
@@ -33,7 +34,8 @@ module.exports = {
                         title: el.title,
                         pageView: el.page_view,
                         replyNum: el.reply_num,
-                        userName: el.user_name
+                        userName: el.user_name,
+                        photo: (el.photo==""||el.photo==null?noImageUrl:el.photo)
                     };
                     if(el.category){
                         topic.category=el.category;

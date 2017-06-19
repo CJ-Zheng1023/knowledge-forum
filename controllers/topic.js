@@ -3,6 +3,7 @@ var sql = require('../sqls/topic-sql.js');
 var uuid = require('../utils/UUIDUtil');
 var config = require('../config');
 var Promise = require('bluebird');
+var noImageUrl = require('../config').noImageUrl;
 
 var NO_RESOURCE = "no resource";
 
@@ -27,6 +28,7 @@ module.exports = {
                     topic.userName=temp.user_name;
                     topic.signature=temp.signature;
                     topic.category=temp.category;
+                    topic.userPhoto=(temp.photo==""||temp.photo==null?noImageUrl:temp.photo);
                     data.topic = topic;
                     return topic;
                 }else{
