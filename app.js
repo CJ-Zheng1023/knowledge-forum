@@ -133,7 +133,8 @@ app.use(session({
         host: config.redisConfig.host,
         port: config.redisConfig.port,
         ttl: config.redisConfig.ttl,
-        db: config.redisConfig.db
+        db: config.redisConfig.db,
+        pass: config.redisConfig.pass
     }),
     secret: "my secret",
     resave: true,
