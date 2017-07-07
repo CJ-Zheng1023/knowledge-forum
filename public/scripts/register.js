@@ -18,7 +18,6 @@ $(function(){
             },
             password: {
                 required: true,
-                maxlength: 20,
                 minlength: 6
             },
             mail: {
@@ -33,7 +32,6 @@ $(function(){
             },
             password: {
                 required: "请输入密码。",
-                maxlength: jQuery.validator.format("输入的密码长度不能超过{0}个字。"),
                 minlength: jQuery.validator.format("输入的密码长度不能少于{0}个字。")
             },
             mail: {
