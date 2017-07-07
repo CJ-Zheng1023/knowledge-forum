@@ -20,7 +20,8 @@ module.exports = function(passport) {
                 var user = {
                     id: rows[0].Id,
                     userName: rows[0].user_name,
-                    photo: (rows[0].photo==""||rows[0].photo==null?noImageUrl:rows[0].photo)
+                    photo: (rows[0].photo==""||rows[0].photo==null?noImageUrl:rows[0].photo),
+                    signature: rows[0].signature
                 }
                 return done(null, user);
             })
