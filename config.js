@@ -26,7 +26,8 @@ var redisConfig = {
     host: 'localhost',
     port: '6379',
     ttl: 60 * 60 * 24,
-    db: 2
+    db: 2,
+    pass: ''
 }
 
 exports.dbConfig = dbConfig;

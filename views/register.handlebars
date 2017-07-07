@@ -1,3 +1,7 @@
+{{#section 'js'}}
+    <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/scripts/register.js"></script>
+{{/section}}
 <div class="content">
     <div class="container">
         <div class="row">
@@ -10,8 +14,12 @@
                         {{#if msg}}
                             <div class="alert alert-danger">{{msg}}</div>
                         {{/if}}
-                        <form class="row login-form" action="" method="post">
+                        <form novalidate="novalidate" class="row login-form" action="" method="post" id="registerForm">
                             <div class="col-md-5">
+                                <div class="alert alert-danger display-hide" style="display: none;">
+                                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    输入有误
+                                </div>
                                 <div class="form-group">
                                     <label for="userName">用户名</label>
                                     <input type="text" class="form-control" id="userName" name="username" placeholder="请输入用户名">
