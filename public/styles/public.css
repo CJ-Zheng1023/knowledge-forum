@@ -65,4 +65,14 @@
         }
     }
 }
+.navbar .dropdown .glyphicon{
+    top: 2px;
+}
+.navbar .dropdown .menu-text{
+    margin-left: 5px;
+}
+.navbar .dropdown .dropdown-menu li>a{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
 
