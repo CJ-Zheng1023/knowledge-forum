@@ -4,6 +4,7 @@ var uuid = require('../utils/UUIDUtil');
 var config = require('../config');
 var Promise = require('bluebird');
 var noImageUrl = require('../config').noImageUrl;
+var dateUtil = require('../utils/DateUtil');
 
 var NO_RESOURCE = "no resource";
 
@@ -76,7 +77,7 @@ module.exports = {
     },
     addComment: function(req, res, next){
         Promise.using(getSqlConnection(), function(conn){
-            return conn.query(sql.INSERT_COMMENT, [uuid.generateUUID(),req.body.content,req.body.topicId,req.user.id,new Date()]).then(function(){
+            return conn.query(sql.INSERT_COMMENT, [uuid.generateUUID(),req.body.content,req.body.topicId,req.user.id,dateUtil.format('yyyy-MM-dd hh:mm:ss')]).then(function(){
                 res.redirect('/topic/show/'+req.body.topicId);
             }).catch(function(errors){
                 console.log(errors);
@@ -101,7 +102,7 @@ module.exports = {
     addTopic: function(req, res, next){
         var id=uuid.generateUUID();
         Promise.using(getSqlConnection(), function(conn){
-            return conn.query(sql.INSERT_TOPIC,[id, req.body.title, new Date(), req.body.content, req.user.id, req.body.category]).then(function(){
+            return conn.query(sql.INSERT_TOPIC,[id, req.body.title, dateUtil.format('yyyy-MM-dd hh:mm:ss'), req.body.content, req.user.id, req.body.category]).then(function(){
                 res.redirect('/topic/show/'+id);
             }).catch(function(errors){
                 console.log(errors);
