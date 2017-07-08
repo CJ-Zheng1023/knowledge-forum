@@ -75,4 +75,17 @@
     padding-top: 6px;
     padding-bottom: 6px;
 }
+.error-page{
+    text-align: center;
+    padding: 100px 0;
+}
+.error-page .number{
+    font-size: 128px;
+    line-height: 128px;
+    font-weight: 300;
+}
+.error-page .warning{
+    font-size: 23px;
+    font-weight: 300;
+}
 
