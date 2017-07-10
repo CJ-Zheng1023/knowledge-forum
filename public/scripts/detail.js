@@ -7,7 +7,7 @@ $(function(){
 
     $("[data-reply-user]").on('click', function(){
         var userName = $(this).attr("data-reply-user");
-        editor.setData("@"+userName+" ");
+        editor.setData("@"+userName+"&nbsp;");
     })
     var commentForm = $("#addCommentForm");
     commentForm.on('submit', function() {

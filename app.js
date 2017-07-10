@@ -106,7 +106,7 @@ var handlebars =require('express3-handlebars').create({
         },
         //处理评论内容，给@[username] 添加a标签
         setUserName: function(content){
-            var matchArr = content.match(/@[\w@]*/g);
+            var matchArr = content.match(/@[^@]+/g);
             if(matchArr instanceof Array){
                 matchArr.forEach(function(el){
                     var reg = new RegExp(el, "g");
