@@ -1,4 +1,7 @@
 $(function(){
+
+    pushHistory();
+
     $('#loginName').focus();
     function setScroll(){
         $('.scrollable').slimScroll({
@@ -70,17 +73,55 @@ $(function(){
         if(!$room.data('currentUser')){
             return;
         }
+        if(!data.user){
+            return;
+        }
         if(data.action == 'join'){
             $.bootstrapGrowl(data.user + '  加入了聊天室~~~', {
                 type:'info',
-                delay: 3000
+                delay: 1000
             })
         }else{
             $.bootstrapGrowl(data.user + '  离开了聊天室 T.T', {
                 type:'warning',
-                delay: 3000,
+                delay: 1000,
                 offset: {from: "bottom", amount: 80}
             })
         }
     })
+
+
+
+
+    window.addEventListener("popstate", function(e) {
+        //alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能
+        var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i)=="micromessenger") {
+            leaveAtBATPlatform();
+            WeixinJSBridge.call('closeWindow'); //微信
+        } else if(ua.indexOf("alipay")!=-1){
+            leaveAtBATPlatform();
+            AlipayJSBridge.call('closeWebview'); //支付宝
+        }else if(ua.indexOf("baidu")!=-1){
+            leaveAtBATPlatform();
+            BLightApp.closeWindow(); //百度
+        }else{
+            window.close(); //普通浏览器
+        }
+    }, false);
+
+    function leaveAtBATPlatform(){
+        socket.emit('leaveAtBATPlatform');
+    }
+
+
+    function pushHistory() {
+        var state = {
+            title: "title",
+            url: "#"
+        };
+        window.history.pushState(state, "title", "#");
+    }
+
+
 })

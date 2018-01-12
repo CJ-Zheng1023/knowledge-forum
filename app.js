@@ -196,6 +196,9 @@ io.on('connection', function(socket){
     });
   })
   socket.on('disconnect', function(){
+    if(!socket.user){
+      return;
+    }
     users = users.filter(function(item){
       return item != socket.user;
     })
@@ -209,7 +212,19 @@ io.on('connection', function(socket){
     socket.broadcast.emit('queryMessage', message);
     socket.emit('queryMessage', message);
   })
+  socket.on('leaveAtBATPlatform', function(){
+      users = users.filter(function(item){
+          return item != socket.user;
+      })
+      socket.broadcast.emit('queryUser', users);
+      socket.broadcast.emit('notify', {
+          user: socket.user,
+          action: 'leave'
+      });
+      socket.user = null;
+  })
 })
+
 //配置服务器监听
 http.listen(app.get('port'), function(){
     console.log("server start");
