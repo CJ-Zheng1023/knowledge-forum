@@ -60,7 +60,6 @@ $(function(){
         $belong.append($user).append($content);
         $item.append($belong);
         $messageList.append($item);
-        console.log(123)
         var scrollTo = $('#messageList').height() - $('.message-box .scrollable').height();
         $('.message-box .scrollable').slimScroll({
             height: '100%',
