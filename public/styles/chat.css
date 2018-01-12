@@ -1,0 +1,304 @@
+html, body{
+    height: 100%;
+}
+body{
+    background-color: #f9f9f9;
+}
+
+/* chat-login start */
+.chat-login{
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.chat-login .container{
+    max-width: 700px;
+}
+.chat-login h1{
+    color: #337ab7;
+}
+.chat-login .panel{
+    border-color: rgb(238, 238, 238);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .05);
+}
+.chat-login .form-action{
+    text-align: center;
+}
+.chat-login .form-group input{
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid rgb(204, 204, 204);
+}
+/* chat-login end */
+
+/* side-bar start */
+.side-bar{
+    position: fixed;
+    left: 0;
+    height: 100%;
+    background-color: #4d5b69;
+    padding-left: 290px;
+    z-index: 100;
+    -webkit-transform: translateX(-290px);
+    -moz-transform: translateX(-290px);
+    -ms-transform: translateX(-290px);
+    -o-transform: translateX(-290px);
+    transform: translateX(-290px);
+    -webkit-transition: transform .5s .2s;
+    -moz-transition: transform .5s .2s;
+    -ms-transition: transform .5s .2s;
+    -o-transition: transform .5s .2s;
+    transition: transform .5s .2s;
+}
+.side-bar.open{
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    transform: translateX(0px);
+}
+.side-bar .side-bar-toggle{
+    position: relative;
+    height: 100%;
+    width: 30px;
+    cursor: pointer;
+    border-left: 1px solid rgb(83, 99, 114);
+}
+.side-bar .side-bar-toggle:hover{
+    background-color: rgb(73, 86, 99);
+}
+.side-bar .side-bar-toggle .chat-icon{
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%);
+    -moz-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    -o-transform: translate(-50%);
+    transform: translate(-50%);
+    left: 50%;
+    color: #8cacc3;
+}
+.chat-icon.chat-icon-left{
+    display: none;
+}
+.side-bar.open .chat-icon.chat-icon-left{
+    display: block;
+}
+.side-bar .chat-icon.chat-icon-right{
+    -webkit-animation: bling 1s infinite;
+    -o-animation: bling 1s infinite;
+    animation: bling 1s infinite;
+}
+.side-bar.open .chat-icon.chat-icon-right{
+    display: none;
+}
+.side-bar .chat-tabs-box{
+    width: 290px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    padding-top: 77px;
+}
+.chat-tabs-box .nav-tabs{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.chat-tabs-box .nav-justified>li{
+    display: table-cell;
+    width: 1%;
+}
+.chat-tabs-box .nav-tabs>li>a{
+    color: #fff !important;
+    border: none !important;
+    border-bottom: 3px solid rgba(243, 86, 93, 0.3) !important;
+    background-color: transparent !important;
+    padding: 45px 15px 8px 15px;
+    font-size: 15px;
+    border-radius: 0 !important;
+}
+.chat-tabs-box .nav-tabs>li.active>a{
+    border-bottom: 3px solid rgb(243, 86, 93) !important;
+}
+.chat-tabs-box .nav-tabs>li:hover>a{
+    border-bottom: 3px solid rgb(243, 86, 93) !important;
+}
+.chat-tabs-box .badge{
+    position: absolute;
+    right: 3px;
+    top: 45px;
+}
+.badge.badge-danger{
+    background-color: #F3565D;
+}
+.chat-tabs-box .list-group-item{
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 20px 15px;
+    border-bottom: 1px solid rgb(83, 99, 114);
+}
+.chat-tabs-box .list-group-item:first-child{
+    border-radius: 0;
+}
+.chat-tabs-box .list-group-item:last-child{
+    border-radius: 0;
+    border-bottom: none;
+}
+@-webkit-keyframes bling {
+    0%{
+        margin-left: 0;
+    }
+    50%{
+        margin-left: 2px;
+    }
+    100%{
+        margin-left: 0;
+    }
+}
+@-moz-keyframes bling {
+    0%{
+        margin-left: 0;
+    }
+    50%{
+        margin-left: 2px;
+    }
+    100%{
+        margin-left: 0;
+    }
+}
+@-ms-keyframes bling {
+    0%{
+        margin-left: 0;
+    }
+    50%{
+        margin-left: 2px;
+    }
+    100%{
+        margin-left: 0;
+    }
+}
+@-o-keyframes bling {
+    0%{
+        margin-left: 0;
+    }
+    50%{
+        margin-left: 2px;
+    }
+    100%{
+        margin-left: 0;
+    }
+}
+@keyframes bling {
+    0%{
+        margin-left: 0;
+    }
+    50%{
+        margin-left: 2px;
+    }
+    100%{
+        margin-left: 0;
+    }
+}
+
+/* side-bar end */
+
+/* chat-room start */
+.chat-room{
+    height: 100%;
+}
+.chat-room .chat-dialog{
+    margin-left: 30px;
+    height: 100%;
+    background-color: #fff;
+    position: relative;
+}
+.chat-room .chat-dialog .message-box{
+    height: 100%;
+    padding-bottom: 53px;
+}
+.message-box .message-list{
+    padding: 0 20px;
+    margin: 0;
+    list-style: none;
+}
+.message-list .message-item{
+    padding: 10px 0;
+}
+.message-list .message-item:after{
+    clear: both;
+    content: '';
+    display: table;
+}
+.message-item .other{
+    float: left;
+    padding-right: 50px;
+}
+.message-item .own{
+    float: right;
+    padding-left: 50px;
+}
+.message-item h3{
+    font-size: 18px;
+}
+.message-item .own h3{
+    text-align: right;
+}
+.message-item .message-content{
+    padding: 5px 12px;
+    font-size: 15px;
+    color: rgb(51, 51, 51);
+    background-color: rgb(224, 237, 255);
+    display: inline-block;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-radius: 3px;
+}
+.message-item .own .message-content{
+    background-color: #aee65d;
+}
+.chat-room .chat-dialog .send-form{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #E3E8EA;
+    padding: 10px 70px 10px 15px;
+    border-top: 1px solid #ccc;
+}
+.send-form>input{
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+.send-form>input:focus, .send-form>input:active{
+    outline: none;
+}
+.send-form>button{
+    position: absolute;
+    right: 5px;
+    top: 9px;
+}
+/* chat-room end */
+
+
+/* bootstrap alert reset start */
+.alert{
+    color: #fff;
+    text-align: center;
+}
+.alert-info{
+    background-color: #89C4F4;
+    border-color: #68caf1;
+}
+.alert-warning{
+    background-color: #ff5722;
+    border-color: #ff1b08;
+}
+/* bootstrap alert reset end */

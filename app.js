@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 app.use(require('body-parser')());
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 //引入session中间件
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
@@ -157,6 +159,10 @@ app.use('/user', user);
 app.use('/topic', topic);
 app.use('/api/v1', apiRouterV1);
 
+app.get('/chat', function(req, res){
+  res.sendFile(__dirname + '/views/chat.html')
+})
+
 //定制404页面
 app.use(function(req, res){
     //res.type('text/plain');
@@ -171,8 +177,41 @@ app.use(function(req, res){
     //res.send('error 500');
     res.render('500');
 })
+
+/**
+ * 存储在线用户
+ * @type {Array}
+ */
+var users = [];
+io.on('connection', function(socket){
+  socket.on('addUser', function(user){
+    users.push(user);
+    socket.user = user;
+    socket.broadcast.emit('queryUser', users);
+    socket.emit('queryUser', users);
+    socket.emit('cacheCurrentUser', user);
+    socket.broadcast.emit('notify', {
+      user: user,
+      action: 'join'
+    });
+  })
+  socket.on('disconnect', function(){
+    users = users.filter(function(item){
+      return item != socket.user;
+    })
+    socket.broadcast.emit('queryUser', users);
+    socket.broadcast.emit('notify', {
+      user: socket.user,
+      action: 'leave'
+    });
+  })
+  socket.on('addMessage', function(message){
+    socket.broadcast.emit('queryMessage', message);
+    socket.emit('queryMessage', message);
+  })
+})
 //配置服务器监听
-app.listen(app.get('port'), function(){
+http.listen(app.get('port'), function(){
     console.log("server start");
 })
 

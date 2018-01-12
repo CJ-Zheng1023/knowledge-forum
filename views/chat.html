@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/chat.css" />
+    <title>聊天啦~~~</title>
+</head>
+<body>
+<section class="chat-login">
+    <div class="container">
+        <h1 class="text-center">聊天啦~~~</h1>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <input class="text-center" type="text" placeholder="昵称" id="loginName" autocomplete="off" />
+                    </div>
+                    <div class="form-action">
+                        <button class="btn btn-primary btn-lg">开始聊天</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="chat-room" style="display: none;">
+    <div class="side-bar">
+        <div class="chat-tabs-box">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li class="active"><a href="#user" aria-controls="user" role="tab" data-toggle="tab">在线用户<span class="badge badge-danger" id="userCount"></span></a></li>
+                <li><a href="#music" aria-controls="music" role="tab" data-toggle="tab">音乐欣赏</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content scrollable">
+                <div role="tabpanel" class="tab-pane active" id="user">
+                    <ul class="list-group" id="userList">
+
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="music">
+                    功能未开放！
+                </div>
+            </div>
+
+        </div>
+        <div class="side-bar-toggle">
+            <i class="chat-icon chat-icon-right glyphicon glyphicon-menu-right"></i>
+            <i class="chat-icon chat-icon-left glyphicon glyphicon-menu-left"></i>
+        </div>
+    </div>
+    <div class="chat-dialog">
+        <div class="message-box">
+            <div class="scrollable">
+                <ul class="message-list" id="messageList">
+
+                </ul>
+            </div>
+        </div>
+        <form class="send-form" id="sendForm">
+            <form>
+                <input type="text" autocomplete="off" id="messageContent" />
+                <button class="btn btn-default">发 送</button>
+            </form>
+        </form>
+    </div>
+</section>
+
+<script src="/components/jquery/dist/jquery.min.js"></script>
+<script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/components/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
+<script src="/components/socket.io-client/dist/socket.io.js"></script>
+<script src="/scripts/chat.js"></script>
+</body>
+</html>
