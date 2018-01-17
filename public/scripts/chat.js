@@ -124,4 +124,23 @@ $(function(){
     }
 
 
+  $('.music-controls').on('click', function(){
+    var me = $(this);
+    if(me.hasClass('glyphicon-play')){
+      $('.table-music>tbody>tr').removeClass('playing');
+      me.closest('tr').addClass('playing');
+      $('.music-controls').removeClass('glyphicon-pause').addClass('glyphicon-play');
+      me.removeClass('glyphicon-play').addClass('glyphicon-pause');
+      me.closest('tr').siblings().find('audio').each(function(i, dom){
+        dom.pause();
+        dom.currentTime = 0;
+      })
+      me.siblings('audio')[0].play();
+    }else{
+      me.removeClass('glyphicon-pause').addClass('glyphicon-play');
+      me.siblings('audio')[0].pause();
+    }
+  })
+
+
 })

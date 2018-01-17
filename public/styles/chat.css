@@ -302,3 +302,32 @@ body{
     border-color: #ff1b08;
 }
 /* bootstrap alert reset end */
+
+
+/* music table start */
+
+.table.table-music>thead>tr>th, .table.table-music>tbody>tr>td{
+    border-bottom: 1px solid rgb(83, 99, 114);
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    vertical-align: middle;
+}
+.table.table-music>thead>tr>th>div, .table.table-music>tbody>tr>td>div{
+    width: 90px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.music-controls{
+    cursor: pointer;
+    color: #fff !important;
+}
+.table.table-music>tbody>tr.playing>td>div{
+    color: #d9edf7;
+    font-weight: 700;
+}
+
+
+
+
+/* music table end */
