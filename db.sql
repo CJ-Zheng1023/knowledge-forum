@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50635
 File Encoding         : 65001
 
-Date: 2018-01-12 15:20:20
+Date: 2018-02-07 14:54:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,13 +31,9 @@ CREATE TABLE `comment` (
   KEY `fk_comment_2` (`user_id`),
   KEY `fk_comment_3` (`stat_id`),
   CONSTRAINT `fk_comment_1` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_comment_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_comment_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_comment_3` FOREIGN KEY (`stat_id`) REFERENCES `statistic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of comment
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for statistic
@@ -52,11 +48,6 @@ CREATE TABLE `statistic` (
   KEY `totalcommunity` (`totalcommunity`),
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of statistic
--- ----------------------------
-INSERT INTO `statistic` VALUES ('0', '0', '0', '1');
 
 -- ----------------------------
 -- Table structure for topic
@@ -76,34 +67,26 @@ CREATE TABLE `topic` (
   PRIMARY KEY (`Id`),
   KEY `fk_topic_1` (`user_id`),
   KEY `fk_topic_3` (`statistic_id`),
-  CONSTRAINT `fk_topic_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_topic_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_topic_3` FOREIGN KEY (`statistic_id`) REFERENCES `statistic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of topic
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `Id` varchar(32) NOT NULL,
+  `id` varchar(32) NOT NULL,
   `user_name` varchar(255) DEFAULT NULL COMMENT '用户名',
   `password` varchar(255) DEFAULT NULL COMMENT '用户密码',
   `mail` varchar(255) DEFAULT NULL COMMENT '邮箱',
   `photo` text COMMENT '头像',
   `signature` varchar(255) DEFAULT NULL COMMENT '个性签名',
   `statistic_id` int(32) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`Id`),
+  PRIMARY KEY (`id`),
   KEY `fk_user_1` (`statistic_id`),
   CONSTRAINT `fk_user_1` FOREIGN KEY (`statistic_id`) REFERENCES `statistic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of user
--- ----------------------------
 DROP TRIGGER IF EXISTS `comment_trigger_3`;
 DELIMITER ;;
 CREATE TRIGGER `comment_trigger_3` BEFORE INSERT ON `comment` FOR EACH ROW begin
