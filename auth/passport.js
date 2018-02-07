@@ -18,7 +18,7 @@ module.exports = function(passport) {
         Promise.using(getSqlConnection(), function(conn){
             return conn.query('SELECT * FROM user WHERE id = ? ', [id]).then(function(rows){
                 var user = {
-                    id: rows[0].Id,
+                    id: rows[0].id,
                     userName: rows[0].user_name,
                     photo: (rows[0].photo==""||rows[0].photo==null?noImageUrl:rows[0].photo),
                     signature: rows[0].signature
@@ -46,7 +46,7 @@ module.exports = function(passport) {
                         return done(null, false, req.flash('msg', '输入的密码有误。'));
                     }
                     var user = {
-                        id: rows[0].Id,
+                        id: rows[0].id,
                         userName: rows[0].user_name,
                         photo: (rows[0].photo==""||rows[0].photo==null?noImageUrl:rows[0].photo)
                     }
