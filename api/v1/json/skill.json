@@ -2,27 +2,27 @@
   "skills": [
     {
       "name": "HTML5",
-      "score": "75%"
+      "score": 75
     },
     {
       "name": "CSS3",
-      "score": "80%"
+      "score": 80
     },
     {
       "name": "jquery",
-      "score": "80%"
+      "score": 80
     },
     {
       "name": "VueJS",
-      "score": "70%"
+      "score": 70
     },
     {
       "name": "NodeJS",
-      "score": "70%"
+      "score": 70
     },
     {
       "name": "JAVA",
-      "score": "75%"
+      "score": 75
     }
   ]
 }

@@ -163,6 +163,10 @@ app.get('/chat', function(req, res){
   res.sendFile(__dirname + '/views/chat.html')
 })
 
+app.get('/love', function(req, res){
+    res.sendFile(__dirname + '/views/love.html')
+})
+
 //定制404页面
 app.use(function(req, res){
     //res.type('text/plain');

@@ -1,7 +1,6 @@
 {
   "name": "郑成杰",
   "age": 28,
-  "email": "CJ_Zheng1023@hotmail.com",
-  "site": "https://github.com/CJ-Zheng1023",
+  "birthday": "1989-10-23",
   "introduction": "6年工作经验，主要从事java web和前端开发工作，对mvc开发模式具有一定的经验。掌握Spring，Struts，dubbo等主流开源框架，熟悉运用oracle，mysql等数据库。熟悉nodejs相关技术栈，曾带领团队完成基于nodejs，jquery，bootstrap的项目开发工作，成果物在国家知识产权局主办的“知识产权交流大会”中成功展出。对前端技术有着很大的兴趣，对es6，vue等技术有一定的了解。"
 }
