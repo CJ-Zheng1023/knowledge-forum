@@ -23,7 +23,7 @@ $(function(){
                 minlength: 6
             },
             signature: {
-                maxlength: 20
+                maxlength: 40
             }
         },
         messages: { // custom messages for radio buttons and checkboxes

@@ -29,7 +29,7 @@ $(function(){
             },
             title: {
                 required: true,
-                maxlength: 30
+                maxlength: 100
             },
             content: {
                 required: true
