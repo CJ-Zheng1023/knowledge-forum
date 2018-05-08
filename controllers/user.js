@@ -84,7 +84,8 @@ module.exports = {
                 var personal = {
                     id: temp.id,
                     userName: temp.user_name,
-                    signature: temp.signature
+                    signature: temp.signature,
+                    userPhoto: (temp.photo==""||temp.photo==null?noImageUrl:temp.photo)
                 };
                 data.personal=personal;
                 id = personal.id;
