@@ -1,0 +1,21 @@
+*{
+    font-family: 微软雅黑 !important;
+}
+html, body{
+    height: 100%;
+}
+body{
+    background: #A1FFCE;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FAFFD1, #A1FFCE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.caption-header{
+    color: #337ab7;
+    font-size: 24px;
+    text-align: center;
+}
+.caption-body{
+    font-size: 14px;
+    color: #555;
+    min-height: 40px;
+}
