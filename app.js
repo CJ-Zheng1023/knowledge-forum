@@ -159,12 +159,11 @@ app.use('/user', user);
 app.use('/topic', topic);
 app.use('/api/v1', apiRouterV1);
 
-app.get('/lamp', function(req, res){
-  res.sendFile(__dirname + '/views/lamp.html')
-})
-
 app.get('/chat', function(req, res){
   res.sendFile(__dirname + '/views/chat.html')
+})
+app.get('/lamp', function(req, res){
+  res.sendFile(__dirname + '/views/lamp.html')
 })
 
 app.get('/love', function(req, res){
